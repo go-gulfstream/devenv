@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dev@dev.com
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    volumes:
+      - ./tmp:/var/lib/pgadmin
+      - ./configs/pgadmin.json:/pgadmin4/servers.json:ro
+    ports:
+      - 8081:80
+    depends_on:
+      - postgres
+    networks:
+      - dev
